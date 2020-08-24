@@ -1,0 +1,150 @@
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="applet/TemplateData/favicon.ico">
+  <link rel="stylesheet" href="applet/TemplateData/style.css">
+  <script src="applet/TemplateData/UnityProgress.js"></script>
+  <script src="applet/Build/UnityLoader.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/applet.json", {onProgress: UnityProgress});
+  </script>
+</head>
+
+<div class="container">
+    <div class="conta">
+        <div class="bl-main" id="bl-main">
+            <section>
+                <div class="bl-box">
+                    <h2 class="bl-icon bl-icon-home">HOME</h2>
+                </div>
+
+                <div class="bl-content">
+                    <h2>Geometry Wave Motion Simulation</h2>
+                    <h1>Progetto di geometria computazionale anno 2019/2020 di Berto Riccardo</h1>
+                    <p>L'applicazione sviluppata come progetto di esame di geometria computazionale tenuto dal Prof. Alberto Alzati è composta da due scene:
+                      <ul>
+                        <li>La prima scena è la simulazione di un modo ondulatorio di un filo tenuto da due estremità in uno spazio bidimensionale. L'utente può impostare diversi
+                          parametri per poter vedere le diverse ondulazioni che assume il filo che viene tirato e lasciato andare. Il moto ondulatorio è simulato attraverso una spline</li>
+                        <li>La seconda scena è la simulazione dello stesso fenomeno, ma su una superficie di un piano in uno spazio tridimensionale. Il movimento ondulatorio è radiale
+                          rispetto al centro. L'utente può modificare dei parametri per vedere le diverse ondulazioni che assume.</li>
+                      </ul>
+                </div><span class="bl-icon bl-icon-close">Close</span>
+            </section>
+
+            <section>
+                <div class="bl-box">
+                    <h2 class="bl-icon bl-icon-theory">Teoria</h2>
+                </div>
+
+                <div class="bl-content">
+                    <h2>Curve di Bèzier</h2>
+
+                    <p>Le curve di Bézier sono particolari curve parametriche ampiamente utilizzati in computer grafica per modellare curve morbide. Poiché la curva è completamente contenuto
+                       nel guscio convesso dei suoi punti di controllo , i punti possono essere visualizzate graficamente ed usati per manipolare la curva intuitivamente.<br />
+                      Una curva di Bézier è una curva parametrica definita da n+1 punti (di controllo), e il poligono che si ottiente congiungendo i punti di controllo prende il nome di
+                      poligono di controllo.
+                    </p>
+
+                    <br /><br />
+
+                    <h2>Spline</h2>
+
+                    <p>Una spline è una funzione composta da più curve polinomiali il cui scopo è dare continuità alla funzione fino ad un dato ordine di derivate in ogni punto dell'intervallo.
+                      Esistono 3 tipo di incollamenti C0,C1, C2. La prima garantisce che il punto Pn corrisponde con la fine di una curva e l'inizio della successiva, C1 oltre a garantire
+                      le condizioni di C0 garantisce che Pn-1, Pn e Pn+1 siano allineati questo permette di garantire che la derivata della prima curva in Pn coicinide con
+                      la derivata della seconda curva in Pn. C2 oltre a garantire C0 e C1 la derivata seconda delle due rette nel punto di contatto deve coincidere.
+
+                      All'interno del progetto si è scelto di usare un incollamento di tipo C1, i punti di controllo Pn-1, Pn e Pn+1 sono dunque allineati.
+
+                    </p>
+                    <br /><br />
+                    <h2>Moto D'onda</h2>
+                    <p>
+                      Quando un filo di lunghezza L viene teso, e si esercita una pressione nel centro, al rilascio inizia a vibrare generando un moto d'onda la cui velocità dipende dalla tensione
+                      e dalla massa per unità di lunghezza: $$v = \sqrt{T \over m/L}$$
+
+                      All'interno del progetto per la simulazione del moto è stato scelto per semplificazione di usare una massa per unità di lunghezza pari a 0.3, che è tipicamente
+                      quella di una corda da chitarra.
+
+                      Quado vibra il filo ha una frequenza che varia in base alla lunghezza della corda e alla velocità (quindi di conseguenza anche alla tensione della corda) dell'onda.
+                      $$f = {v \over 2L}$$
+
+                      Nella simulazione del moto 2D è possibile impostare: tensione, lunghezza ed elasticità del filo.
+                      L'elasticità del filo indica quanto questo può essere tirato verso il basso. Se l'elasticità viene posta a 0 significa che il filo è rigido e di
+                      conseguenza non c'è moto.
+                      La tensione indica invece indica la forza esercitata dagli estremi nel tentatio di "allungare" il filo.
+
+                      I parametri impostabili hanno delle limitazioni dovute a problemi di natura computazionale.
+
+                      Nella simulazione del moto 3D sul piano si possono impostare frequenza e texture. Il piano presenta una texture neutra che può
+                      essere scambiata con una texture d'acqua (una modifica visiva semplice). La frequenza indica quante onde ci sono sul piano, rispetto al moto 2D è stato semplificato
+                      permettendo di impostare direttamente la frequenza, ma a livello fisico il moto è lo stesso e usando gli stessi parametri del moto 3D nella simulazione 2D si otterrebbe
+                      la stessa frequenza.
+                    </p>
+                    <br /><br />
+                    <h2>Implementazione</h2>
+                    <p>
+                      TODO
+                    </p>
+
+                </div><span class="bl-icon bl-icon-close">Close</span>
+            </section>
+
+            <section>
+                <div class="bl-box">
+                    <h2 class="bl-icon bl-icon-man">Manuale</h2>
+                </div>
+
+                <div class="bl-content">
+                    <h2>Controlli</h2>
+
+                    <p>L'applicativo è molto semplice, la schermata si divide in due bottoni, un menù a comparsa e la scena. I due bottoni permettono di passare dalla simulazione di moto ondulatorio con il filo (2D) e
+                    quello con il piano (3D). Di default è selezionato il primo. <br /><br />
+                    Spostando il mouse a lato (sx) appare un menù a comparsa che permette di modificare i parametri della scena e testare diverse condizioni di simulazione. <br/> Nella scena 2D
+                    si può modificare la lunghezza del filo, la sua tensione e l'elasticità. La tensione determina quanto il filo è "tirato", maggiore è la tensione maggiore è la frequenza
+                    (proporzionato però alla lunghezza del filo, a parità di tensione un filo più lungo ha una frequenza più bassa). L'elasticità indica invece quanto si può tirare il filo veros il basso<br />
+                    Nella scena 3D si può impostare la frequenza per avere un maggior numero di onde che muovno la superficie.<br /><br />
+                    Una volta impostati i parametri si può esercitare la pressione sul filo (o sul piano) usando il tasto destro del mouse e spostando il cursore verso il basso.
+                  </p>
+                </div><span class="bl-icon bl-icon-close">Close</span>
+            </section>
+
+            <section id="bl-work-section">
+                <div class="bl-box">
+
+                    <h2 class="bl-icon bl-icon-play">Applet</h2>
+                </div>
+
+                <div class="bl-content">
+                  <iframe src="https://i.simmer.io/@verorip/~21c63c87-8ceb-4a5b-f519-824946b2f6df" style="width:1280px;height:728px"></iframe>
+                  <!--<div class="webgl-content">
+                    <div id="unityContainer" style="width: 960px; height: 600px"></div>
+                    <div class="footer">
+                      <div class="webgl-logo"></div>
+                      <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+                      <div class="title">gem_export</div>
+                    </div>
+                  </div>-->
+                </div><span class="bl-icon bl-icon-close">Close</span>
+            </section>
+
+        </div>
+    </div>
+</div><!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script src="js/boxlayout.js"></script> <script>
+            $(function() {
+                Boxlayout.init();
+            });
+</script>
+</html>
+<!--
+
+Hi, hope you like that layout idea,
+the original tutorial you will find
+here: https://tympanus.net/codrops/2013/04/23/fullscreen-layout-with-page-transitions/
+
+code is under the MIT License
+-->
