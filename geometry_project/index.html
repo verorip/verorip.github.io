@@ -11,6 +11,8 @@
   <script>
     var unityInstance = UnityLoader.instantiate("unityContainer", "applet/Build/applet.json", {onProgress: UnityProgress});
   </script>
+  <title>Spline Wave Motion Simulator</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 </head>
 
 <div class="container">
@@ -61,15 +63,15 @@
 
                     </p>
                     <br /><br />
-                    <h2>Moto D'onda</h2>
+                    <h2>Vibrazione di una corda</h2>
                     <p>
-                      Quando un filo di lunghezza L viene teso, e si esercita una pressione nel centro, al rilascio inizia a vibrare generando un moto d'onda la cui velocità dipende dalla tensione
+                      Quando un filo di lunghezza L viene teso, e si esercita una pressione nel centro, al rilascio inizia a vibrare generando un moto ondulatorio la cui velocità dipende dalla tensione
                       e dalla massa per unità di lunghezza: $$v = \sqrt{T \over m/L}$$
 
                       All'interno del progetto per la simulazione del moto è stato scelto per semplificazione di usare una massa per unità di lunghezza pari a 0.3, che è tipicamente
                       quella di una corda da chitarra.
 
-                      Quado vibra il filo ha una frequenza che varia in base alla lunghezza della corda e alla velocità (quindi di conseguenza anche alla tensione della corda) dell'onda.
+                      Quado vibra il filo ha una frequenza (detta frequenza fondamentale) che varia in base alla lunghezza della corda e alla velocità (quindi di conseguenza anche alla tensione della corda) dell'onda.
                       $$f = {v \over 2L}$$
 
                       Nella simulazione del moto 2D è possibile impostare: tensione, lunghezza ed elasticità del filo.
@@ -85,9 +87,34 @@
                       la stessa frequenza.
                     </p>
                     <br /><br />
+                    <h2>Equazione dell'onda</h2>
+
+                    <p>
+                      Un moto ondulatorio è descritto da un'equazione d'onda che è in funzione del tempo. I parametri dell'equazione sono: Ampiezza A (altezza dell'onda), lunghezza d'onda λ(la distanza tra una cresta
+                      e l'altra) e il periodo T (tempo necessario per effetuare un ciclo di onda).<br />
+                      <img src="images/wave.png" alt="Wave" >
+                      <br />
+                      L'equazione è definita dalla formula: <br />$$y(x,t)=Acos({ 2\pi \over \lambda}-{2\pi \over T}t)$$
+                    </p>
+                    <br /><br />
                     <h2>Implementazione</h2>
                     <p>
-                      TODO
+                      Nella scena 2D la spline inizialmente è composta da 7 punti (come se fosse composta da 2 curve, 4 punti che corrispondono alle tangenti e 3 che sono gli effettivi punti di controllo), i quali sono tutti allineati in modo da disegnare una curva. Ad ogni frame si
+                      controlla se i punti di controllo sono cambiati o hanno cambiato la posizione per renderizzare nuovamente il filo. Dopo che viene esercitata una pressione e rilasciato viene calcolato
+                      il nuovo numero di putni di controllo in base alla frequenza: con frequenza 1 si hanno 7 punti di controllo (2 curve), con frequenza 2 invece se ne hanno 13 (4 curve) e così via.
+                      La distanza dei punti di controllo è calcoalta in base al numero di curve, quindi con una lunghezza di 10m con 2 curve la distanza tra i punti di controllo sarà 10/3=3,33. La distanza delle tangenti
+                      invece è uniformemente distribuita tra i punti di controllo, ovvero, prendendo il caso precedente, se due punti di controllo hanno distanza 3,33 la distanza delle tangenti sarà  3,33/3=1,11.
+                      Una volta calcolato il nuovo numero di punti di controllo bisogna far si che si muovano seguendo un moto odnulatorio. Avendo a disposizione i parametri Ampiezza (quanot il filo
+                      è stato tirato verso il basso), Lunghezza d'onda e frequenza si calcolano per ogni putno di controllo il suo valore y tramite l'equazione dell'onda (tranne per il primo e l'ultimo punto che son fissi). Per le tangenti si è scelto
+                      di impostare il valore di quella antecedente al punto di controllo calcolando anche'essa la sua posizione in base alla funzione d'onda, mentre la tangente successiva al punto di controllo
+                      è calcolata in modo che intersechi la retta che passa per la tangente di sinsitra e il punto di controllo.
+                      Durante il moto per ogni curva viene calcolato per ogni punto del filo il suo valore sulla spline.
+                      <br />
+                      La scena 3D è stata sviluppata partendo dal mdoello 2D, però invece di prendere l'intera spline viene presa solo metà in poi, posta al centro del piano e fatta ruote intorno all'asse <i>z</i>.
+                      Più in dettaglio per ogni vertice della mesh del piano è stata calcolata la sua distanza dal centro del piano e usato il valore come valore <i>x</i> dell'intervallo della spline per ricavarne la <i>z</i>.
+                      Quindi a differenza della scena con la corda solo l'ultimo punto di controllo è fisso, mentre tutti gli altir sono in movimento.
+
+
                     </p>
 
                 </div><span class="bl-icon bl-icon-close">Close</span>
