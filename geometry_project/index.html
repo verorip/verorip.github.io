@@ -59,7 +59,7 @@
                       le condizioni di C0 garantisce che Pn-1, Pn e Pn+1 siano allineati questo permette di garantire che la derivata della prima curva in Pn coicinide con
                       la derivata della seconda curva in Pn. C2 oltre a garantire C0 e C1 la derivata seconda delle due rette nel punto di contatto deve coincidere.
 
-                      All'interno del progetto si è scelto di usare un incollamento di tipo C1, i punti di controllo Pn-1, Pn e Pn+1 sono dunque allineati.
+                      All'interno del progetto si è scelto di usare un incollamento di tipo C1, i punti di controllo Pn-1, Pn e Pn+1 sono dunque allineati e hanno la stessa distanza, ovvero Pn-Pn-1 = Pn+1-Pn.
 
                     </p>
                     <br /><br />
@@ -103,13 +103,13 @@
                       controlla se i punti di controllo sono cambiati o hanno cambiato la posizione per renderizzare nuovamente il filo. Dopo che viene esercitata una pressione e rilasciato viene calcolato
                       il nuovo numero di putni di controllo in base alla frequenza: con frequenza 1 si hanno 7 punti di controllo (2 curve), con frequenza 2 invece se ne hanno 13 (4 curve) e così via.
                       La distanza dei punti di controllo è calcoalta in base al numero di curve, quindi con una lunghezza di 10m con 2 curve la distanza tra i punti di controllo sarà 10/3=3,33. La distanza delle tangenti
-                      invece è uniformemente distribuita tra i punti di controllo, ovvero, prendendo il caso precedente, se due punti di controllo hanno distanza 3,33 la distanza delle tangenti sarà  3,33/3=1,11.
+                      invece è uniformemente distribuita tra i punti di controllo, ovvero, prendendo il caso precedente, se due punti di controllo hanno distanza 3,33 la distanza delle tangenti sarà  3,33/3=1,11.<br/><br/>
                       Una volta calcolato il nuovo numero di punti di controllo bisogna far si che si muovano seguendo un moto odnulatorio. Avendo a disposizione i parametri Ampiezza (quanot il filo
                       è stato tirato verso il basso), Lunghezza d'onda e frequenza si calcolano per ogni putno di controllo il suo valore y tramite l'equazione dell'onda (tranne per il primo e l'ultimo punto che son fissi). Per le tangenti si è scelto
                       di impostare il valore di quella antecedente al punto di controllo calcolando anche'essa la sua posizione in base alla funzione d'onda, mentre la tangente successiva al punto di controllo
                       è calcolata in modo che intersechi la retta che passa per la tangente di sinsitra e il punto di controllo.
                       Durante il moto per ogni curva viene calcolato per ogni punto del filo il suo valore sulla spline.
-                      <br />
+                      <br /><br/>
                       La scena 3D è stata sviluppata partendo dal mdoello 2D, però invece di prendere l'intera spline viene presa solo metà in poi, posta al centro del piano e fatta ruote intorno all'asse <i>z</i>.
                       Più in dettaglio per ogni vertice della mesh del piano è stata calcolata la sua distanza dal centro del piano e usato il valore come valore <i>x</i> dell'intervallo della spline per ricavarne la <i>z</i>.
                       Quindi a differenza della scena con la corda solo l'ultimo punto di controllo è fisso, mentre tutti gli altir sono in movimento.
@@ -129,7 +129,7 @@
                     <h2>Controlli</h2>
 
                     <p>L'applicativo è molto semplice, la schermata si divide in tre bottoni, un menù a comparsa e la scena. I due bottoni a sinsitra permettono di passare dalla simulazione di moto ondulatorio con il filo (2D) e
-                    quello con il piano (3D), di default è selezionato il primo, mentre il bottone a destra permette di mostrare i punti di controllo della spline. <br /><br />
+                    quello con il piano (3D), di default è selezionato il primo, mentre il bottone a destra permette di mostrare i punti di controllo della spline, che sono composti da 2 colori, quelli blu che sono gli effettivi punti di controllo e quelli rosis che corrispondono alle tangenti. <br /><br />
                     Spostando il mouse a lato (sx) appare un menù a comparsa che permette di modificare i parametri della scena e testare diverse condizioni di simulazione. <br/> Nella scena 2D
                     si può modificare la lunghezza del filo, la sua tensione e l'elasticità. La tensione determina quanto il filo è "tirato", maggiore è la tensione maggiore è la frequenza
                     (proporzionato però alla lunghezza del filo, a parità di tensione un filo più lungo ha una frequenza più bassa). L'elasticità indica invece quanto si può tirare il filo veros il basso<br />
