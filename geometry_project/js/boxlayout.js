@@ -49,10 +49,12 @@ var Boxlayout = (function() {
 
 	function initEvents() {
 
-		$sections.each( function() {
+		$sections.each( function(i) {
 
 			var $section = $( this );
-
+			if(i==0){
+				setTimeout(function() {$section.trigger('click');}, 1);
+			}
 			// expand the clicked section and scale down the others
 			$section.on( 'click', function() {
 
@@ -138,6 +140,8 @@ var Boxlayout = (function() {
 			return false;
 
 		} );
+
+
 
 	}
 
