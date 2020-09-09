@@ -29,7 +29,7 @@
                     <p>L'applicazione sviluppata come progetto di esame di geometria computazionale tenuto dal Prof. Alberto Alzati è composta da due scene:
                       <ul>
                         <li>La prima scena è la simulazione di un modo ondulatorio di un filo tenuto da due estremità in uno spazio bidimensionale. L'utente può impostare diversi
-                          parametri per poter vedere le diverse ondulazioni che assume il filo che viene tirato e lasciato andare. Il moto ondulatorio è simulato attraverso una spline</li>
+                          parametri per poter vedere le diverse ondulazioni che assume il filo che viene tirato e lasciato andare. Il moto ondulatorio è simulato attraverso una spline.</li>
                         <li>La seconda scena è la simulazione dello stesso fenomeno, ma su una superficie di un piano in uno spazio tridimensionale. Il movimento ondulatorio è radiale
                           rispetto al centro. L'utente può modificare dei parametri per vedere le diverse ondulazioni che assume.</li>
                       </ul>
@@ -44,7 +44,7 @@
                 <div class="bl-content">
                     <h2>Curve di Bèzier</h2>
 
-                    <p>Le curve di Bézier sono particolari curve parametriche ampiamente utilizzati in computer grafica per modellare curve morbide. Poiché la curva è completamente contenuto
+                    <p>Le curve di Bézier sono particolari curve parametriche ampiamente utilizzate in computer grafica per modellare curve morbide. Poiché la curva è completamente contenuto
                        nel guscio convesso dei suoi punti di controllo, i punti possono essere visualizzate graficamente ed usati per manipolare la curva intuitivamente.
                       Una curva di Bézier è una curva parametrica definita da n+1 punti (di controllo), e il poligono che si ottienecongiungendo i punti di controllo prende il nome di
                       poligono di controllo.
@@ -100,18 +100,18 @@
                     <br /><br />
                     <h2>Implementazione</h2>
                     <p>
-                      Nella scena 2D la spline inizialmente è composta da 7 punti (come se fosse composta da 2 curve, 4 punti che corrispondono alle tangenti e 3 che sono gli effettivi punti di controllo), i quali sono tutti allineati in modo da disegnare una curva. Ad ogni frame si
-                      controlla se i punti di controllo sono cambiati o hanno cambiato la posizione per renderizzare nuovamente il filo. Dopo che viene esercitata una pressione e rilasciato viene calcolato
-                      il nuovo numero di punti di controllo in base alla frequenza: con frequenza 1 si hanno 7 punti di controllo (2 curve), con frequenza 2 invece se ne hanno 13 (4 curve) e così via.
-                      La distanza dei punti di controllo è calcolatain base al numero di curve, quindi con una lunghezza di 10m con 2 curve la distanza tra i punti di controllo sarà 10/3=3,33. La distanza delle tangenti
-                      invece è uniformemente distribuita tra i punti di controllo, ovvero, prendendo il caso precedente, se due punti di controllo hanno distanza 3,33 la distanza delle tangenti sarà  3,33/3=1,11.
-                      Una volta calcolato il nuovo numero di punti di controllo bisogna far si che si muovano seguendo un moto ondulatorio. Avendo a disposizione i parametri Ampiezza (quantoil filo
-                      è stato tirato verso il basso), Lunghezza d'onda e frequenza si calcolano per ogni punto di controllo il suo valore y tramite l'equazione dell'onda (tranne per il primo e l'ultimo punto che son fissi). Per le tangenti si è scelto
+                      Nella scena 2D la spline inizialmente è composta da 7 punti (come se fosse composta da 2 curve, 4 punti che corrispondono alle tangenti e 3 che sono gli incollamenti), i quali sono tutti allineati in modo da disegnare una curva. Ad ogni frame si
+                      controlla se i punti di controllo sono cambiati o hanno cambiato la posizione per renderizzare nuovamente il filo. Quando viene esercitata una pressione al centor del filo, e successivamente lasciato libero di muoversi, viene calcolato
+                      il nuovo numero di punti di controllo in base alla frequenza: con frequenza 1 si hanno 7 punti di controllo (2 curve), con frequenza 2 invece se ne hanno 13 (4 curve) e così via.<br />
+                      La distanza dei punti di controllo è calcolata in base al numero di curve, quindi ipotizzando una lunghezza di 10m e una frequenza pari ad 1, si hanno 2 curve la cui distanza tra i punti di incollamento sarà 10/3=3,33. La distanza dei punti di controllo tra l'inizio della curva e la sua fine
+                      invece è uniformemente distribuita tra di loro, ovvero, prendendo il caso precedente, se due incollamenti hanno distanza 3,33 la distanza delle tangenti sarà 3,33/3=1,11.
+                      Una volta calcolato il nuovo numero di punti di controllo bisogna far si che si muovano seguendo un moto ondulatorio. Avendo a disposizione i parametri Ampiezza (quanto il filo
+                      è stato tirato verso il basso), Lunghezza d'onda e frequenza, si calcolano per ogni punto di controllo il suo valore y tramite l'equazione dell'onda (tranne per il primo e l'ultimo punto che son fissi). Per le tangenti si è scelto
                       di impostare il valore di quella antecedente al punto di controllo calcolando anche'essa la sua posizione in base alla funzione d'onda, mentre la tangente successiva al punto di controllo
-                      è calcolata in modo che intersechi la retta che passa per la tangente di sinistrae il punto di controllo.
-                      Durante il moto per ogni curva viene calcolato per ogni punto del filo il suo valore sulla spline.
-                      La scena 3D è stata sviluppata partendo dal modello 2D, però invece di prendere l'intera spline viene presa solo metà in poi, posta al centro del piano e fatta ruote intorno all'asse z.
-                      Più in dettaglio per ogni vertice della mesh del piano è stata calcolata la sua distanza dal centro del piano e usato il valore come valore x dell'intervallo della spline per ricavarne la z.
+                      è calcolata in modo da ottenere un incollamento di tipo C1.
+                      Durante il moto per ogni curva viene calcolato per ogni punto del filo il suo valore sulla spline.<br />
+                      La scena 3D è stata sviluppata partendo dal modello 2D, però invece di prendere l'intera spline viene presa solo metà in poi, posta al centro del piano lungo l'ordinata <i>x</i> e fatta ruotare intorno all'asse z.
+                      Più in dettaglio per ogni vertice della mesh è stata calcolata la sua distanza dal centro del piano e usato il valore come valore x dell'intervallo della spline per ricavarne la z.
 
 
 
@@ -134,7 +134,7 @@
                     si può modificare la lunghezza del filo, la sua tensione e l'elasticità. La tensione determina quanto il filo è "tirato", maggiore è la tensione maggiore è la frequenza
                     (proporzionato però alla lunghezza del filo, a parità di tensione un filo più lungo ha una frequenza più bassa). L'elasticità indica invece quanto si può tirare il filo verso il basso
                     Nella scena 3D si può impostare la frequenza per avere un maggior numero di onde che muovono la superficie e cambiare la texture del piano.
-                    Una volta impostati i parametri si può esercitare la pressione sul filo (o sul piano) tenendo premuto il tasto destro del mouse oppure il tasto Spazio della tastiera e spostando il cursore del mouse verso il basso.
+                    Una volta impostati i parametri si può esercitare la pressione sul filo (o sul piano) tenendo premuto il tasto destro del mouse, oppure il tasto <b>z</b> della tastiera, e spostando il cursore del mouse verso il basso.
                 </div><span class="bl-icon bl-icon-close">Pages</span>
             </section>
 

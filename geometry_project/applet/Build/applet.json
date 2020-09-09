@@ -1,7 +1,7 @@
 {
-"companyName": "DefaultCompany",
-"productName": "gem_export",
-"productVersion": "0.1",
+"companyName": "verorip",
+"productName": "Wave Simulator",
+"productVersion": "1",
 "dataUrl": "applet.data.unityweb",
 "wasmCodeUrl": "applet.wasm.code.unityweb",
 "wasmFrameworkUrl": "applet.wasm.framework.unityweb",
