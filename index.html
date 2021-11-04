@@ -1,0 +1,10 @@
+<script language=javascript>
+function redirect(){
+	current = window.location.pathname
+  window.location = current.substring(0, current.lastIndexOf('/')).concat("/it/index.html");
+}
+</script>
+
+<body onload="redirect()">
+
+</body>
