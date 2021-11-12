@@ -327,7 +327,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .info li {
   width: 100%;
-  float: left;
+  /*float: left;*/
   list-style: none;
   padding: 10px 0;
 }
@@ -358,6 +358,20 @@ h1, h2, h3, h4, h5, h6, figure {
   background-size: 20px 20px;
   background-repeat: no-repeat;
   padding-bottom: 5px;
+}
+
+.button-block span button{
+  border-radius: 100px;
+  text-transform: uppercase;
+  color: white !important;
+  background-color: #42AAF5;
+  border: 0px;
+}
+
+.button-block {
+  width: 50% !important;
+  /*float: unset !important;*/
+  margin: auto;
 }
 
 .fh5co-social-icons {
