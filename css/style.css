@@ -372,7 +372,15 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 50% !important;
   /*float: unset !important;*/
   margin: auto;
+  z-index: 99 !important;
 }
+
+@media screen and (max-width: 780px) {
+  #col-md-4-mobile {
+    z-index: 99;
+  }
+}
+
 
 .fh5co-social-icons {
   margin: 0;
